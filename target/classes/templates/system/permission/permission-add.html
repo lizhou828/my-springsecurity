@@ -15,13 +15,28 @@
         <input type="text" id="id" th:value="${tbPermission.id}" name="id" style="display:none;" autocomplete="off" class="layui-input">
         <div class="layui-form-item">
             <label for="L_name" class="layui-form-label">
-                <span class="x-red">*</span>菜单名
+                <span class="x-red">*</span>类型
+            </label>
+            <div class="layui-input-inline">
+                <!--<input type="text" id="L_type" th:value="${tbPermission.type}" name="type" required="" lay-verify="type" autocomplete="off" class="layui-input">-->
+                <select id="L_type" name="type"  lay-filter="one_cate" required="" lay-verify="type" autocomplete="off" class="layui-input">
+                    <option value="1">菜单</option>
+                    <option value="2">按钮</option>
+                </select>
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red"></span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="L_name" class="layui-form-label">
+                <span class="x-red">*</span>名称
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="L_name" th:value="${tbPermission.name}" name="name" required="" lay-verify="name" autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">
-                <span class="x-red">*</span>将会成为菜单名
+                <span class="x-red"></span>
             </div>
         </div>
         <div class="layui-form-item">
@@ -48,7 +63,7 @@
         </div>
         <div class="layui-form-item">
             <label for="L_name" class="layui-form-label">
-                <span class="x-red">*</span>排序
+                排序
             </label>
             <div class="layui-input-inline">
                 <input type="text" id="L_sort" th:value="${tbPermission.sort}" name="sort" required="" lay-verify="sort" autocomplete="off" class="layui-input">
@@ -57,7 +72,9 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="col-md-2 control-label layui-form-label">上级菜单</label>
+            <label class="col-md-2 control-label layui-form-label">
+                <span class="x-red">*</span>上级菜单
+            </label>
             <div class="layui-input-inline">
                 <input type="number" id="parentId" th:value="${tbPermission.parentId}" name="parentId"  lay-verify="parentId" style="display:none;" autocomplete="off" class="layui-input">
                 <div style="width: 600px"><ul id="dataTree" class="dtree" data-id="0" th:data-value="${tbPermission.parentId}"></ul></div>
@@ -119,9 +136,9 @@
                     return '菜单名至少2个字符';
                 }
             },
-            sort: function(value){
+            parentId: function(value){
                 if(value.length <= 0){
-                    return '请填写整数排序值';
+                    return '请选择上级菜单';
                 }
             }
         });

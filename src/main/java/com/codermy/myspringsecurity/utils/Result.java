@@ -1,5 +1,6 @@
 package com.codermy.myspringsecurity.utils;
 
+import com.codermy.myspringsecurity.enums.ResponseCode;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -31,13 +32,13 @@ public class Result<T> implements Serializable {
     private List<T> data = new ArrayList<T>();
 
     //把构造方法私有
-    private Result() {}
+    public Result() {}
 
     //成功静态方法
     public static Result ok() {
         Result r = new Result();
         r.setSuccess(true);
-        r.setCode(ResultCode.SUCCESS);
+        r.setCode(ResponseCode.OK);
         r.setMsg("成功");
         return r;
     }
@@ -46,7 +47,7 @@ public class Result<T> implements Serializable {
     public static Result error() {
         Result r = new Result();
         r.setSuccess(false);
-        r.setCode(ResultCode.ERROR);
+        r.setCode(ResponseCode.ERROR);
         r.setMsg("失败");
         return r;
     }

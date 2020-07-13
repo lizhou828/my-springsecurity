@@ -20,7 +20,7 @@ public interface PermissionDao {
     List<PermissionDto> buildAll();
 
     @Options(useGeneratedKeys = true, keyProperty = "id")
-    @Insert("insert into tb_permission(parent_id, name, url, permission, sort, type, create_time, update_time)values(#{parentId}, #{name}, #{url},#{type},#{permission}, #{sort}, now(), now())")
+    @Insert("insert into tb_permission(parent_id, name, url, permission, sort, type, create_time, update_time)values(#{parentId}, #{name}, #{url},#{permission}, #{sort},#{type}, now(), now())")
     int save(TbPermission e);
 
     @Select("select * from tb_permission t where t.id = #{id}")
